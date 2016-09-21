@@ -17,8 +17,7 @@ DEFAULT_DELIMITER = ','
 
 
 @python_2_unicode_compatible
-class SelectMultipleField(six.with_metaclass(models.SubfieldBase,
-                                             models.Field)):
+class SelectMultipleField(six.with_metaclass(models.Field)):
     """Stores multiple selection choices as serialized list"""
 
     default_error_messages = {
@@ -85,6 +84,9 @@ class SelectMultipleField(six.with_metaclass(models.SubfieldBase,
 
         msg = self.error_messages['invalid_type'] % {'value': type(value)}
         raise exceptions.ValidationError(msg)
+
+    def from_db_value(self, value, expression, connection, context):
+        return self.to_python(value)
 
     def get_prep_value(self, value):
         """
