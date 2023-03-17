@@ -3,8 +3,7 @@ from __future__ import unicode_literals
 
 from django.core import exceptions, validators
 from django.db import models
-from django.utils import six
-from django.utils.encoding import force_text, python_2_unicode_compatible
+from django.utils.encoding import force_text
 from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 
@@ -16,7 +15,6 @@ import select_multiple_field.forms as forms
 DEFAULT_DELIMITER = ','
 
 
-@python_2_unicode_compatible
 class SelectMultipleField(models.Field):
     """Stores multiple selection choices as serialized list"""
 
@@ -75,7 +73,7 @@ class SelectMultipleField(models.Field):
             self.validate_options_list(value)
             return value
 
-        elif isinstance(value, six.string_types):
+        elif isinstance(value, str):
             #
             # Strings are always encoded choices
             #

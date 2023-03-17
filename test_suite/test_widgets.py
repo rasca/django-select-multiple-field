@@ -24,16 +24,16 @@ class SelectMultipleFieldTestCase(SimpleTestCase):
 
     def test_has_select_multiple_class(self):
         """Rendered widget has a useful HTML class attribute"""
-        w = SelectMultipleField()
-        tag = w.render('test', self.choices[1][0], choices=self.choices)
+        w = SelectMultipleField(choices=self.choices)
+        tag = w.render('test', self.choices[1][0])
         self.assertEqual(tag.count(HTML_ATTR_CLASS), 1)
 
     def test_html_attr_class_settable(self):
         """Rendered widget can override HTML class attribute"""
         CUSTOM_HTML_CLASS = 'myowncss'
         attrs = {'class': CUSTOM_HTML_CLASS}
-        w = SelectMultipleField()
-        tag = w.render('test', self.choices[1][0], attrs, self.choices)
+        w = SelectMultipleField(choices=self.choices)
+        tag = w.render('test', self.choices[1][0], attrs)
         self.assertEqual(tag.count(CUSTOM_HTML_CLASS), 1)
         self.assertEqual(tag.count(HTML_ATTR_CLASS), 0)
 

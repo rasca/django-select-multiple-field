@@ -8,7 +8,6 @@ from django.core import validators
 from django.core.exceptions import ValidationError
 from django.db.models.fields import BLANK_CHOICE_DASH, CharField, Field
 from django.test import SimpleTestCase
-from django.utils import six
 
 from select_multiple_field.codecs import encode_list_to_csv
 from select_multiple_field.forms import SelectMultipleFormField
@@ -75,14 +74,14 @@ class SelectMultipleFieldTestCase(SimpleTestCase):
         """No choice stored as empty string"""
         item = SelectMultipleField()
         self.assertIsInstance(
-            item.get_prep_value([]), six.string_types)
+            item.get_prep_value([]), str)
         self.assertEquals(
             item.get_prep_value([]), '')
 
     def test_get_prep_value_list(self):
         item = SelectMultipleField()
         self.assertIsInstance(
-            item.get_prep_value(self.choices_list), six.string_types)
+            item.get_prep_value(self.choices_list), str)
 
     def test_to_python_none(self):
         item = SelectMultipleField()
