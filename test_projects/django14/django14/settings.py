@@ -48,10 +48,10 @@ USE_I18N = True
 # calendars according to the current locale.
 USE_L10N = True
 
-ugettext = lambda s: s
+gettext = lambda s: s
 LANGUAGES = (
-    ('en', ugettext('English')),
-    ('fr', ugettext('French')),
+    ('en', gettext('English')),
+    ('fr', gettext('French')),
 )
 
 # If you set this to False, Django will not use timezone-aware datetimes.
