@@ -83,7 +83,7 @@ class SelectMultipleField(models.Field):
         msg = self.error_messages['invalid_type'] % {'value': type(value)}
         raise exceptions.ValidationError(msg)
 
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value, expression, connection, context=None):
         return self.to_python(value)
 
     def get_prep_value(self, value):
