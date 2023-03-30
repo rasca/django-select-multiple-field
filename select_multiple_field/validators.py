@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.core import validators
 from django.utils.encoding import force_str
-from django.utils.translation import ungettext_lazy
+from django.utils.translation import ngettext_lazy
 
 try:
     from django.utils.deconstruct import deconstructible
@@ -17,7 +17,7 @@ from .codecs import encode_list_to_csv
 @deconstructible
 class MaxChoicesValidator(validators.BaseValidator):
 
-    message = ungettext_lazy(
+    message = ngettext_lazy(
         'Ensure this value has at most %(limit_value)d choice (it has %(show_value)d).',  # NOQA
         'Ensure this value has at most %(limit_value)d choices (it has %(show_value)d).',  # NOQA
         'limit_value')
@@ -33,7 +33,7 @@ class MaxChoicesValidator(validators.BaseValidator):
 @deconstructible
 class MaxLengthValidator(validators.BaseValidator):
 
-    message = ungettext_lazy(
+    message = ngettext_lazy(
         'Ensure this value has at most %(limit_value)d character (it has %(show_value)d).',  # NOQA
         'Ensure this value has at most %(limit_value)d characters (it has %(show_value)d).',  # NOQA
         'limit_value')
