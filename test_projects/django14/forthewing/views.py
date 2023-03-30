@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import (
     CreateView, DetailView, DeleteView, ListView, UpdateView)
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 
 from .models import ChickenWings
 
@@ -42,4 +42,4 @@ class ChickenWingsDeleteView(DeleteView):
     success_url = reverse_lazy('ftw:deleted')
 
     def get_success_url(self):
-        return force_text(self.success_url)
+        return force_str(self.success_url)

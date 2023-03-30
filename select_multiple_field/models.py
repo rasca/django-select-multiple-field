@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.core import exceptions, validators
 from django.db import models
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.text import capfirst
 from django.utils.translation import ugettext_lazy as _
 
@@ -49,7 +49,7 @@ class SelectMultipleField(models.Field):
             self.validators.append(MaxChoicesValidator(self.max_choices))
 
     def __str__(self):
-        return "%s" % force_text(self.description)
+        return "%s" % force_str(self.description)
 
     def get_internal_type(self):
         return "CharField"
@@ -293,7 +293,7 @@ class SelectMultipleField(models.Field):
             kwargs["include_blank"] = self.include_blank
 
         return (
-            force_text(name, strings_only=True),
+            force_str(name, strings_only=True),
             path,
             args,
             kwargs,

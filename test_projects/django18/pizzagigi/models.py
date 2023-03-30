@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import (
-    force_text, python_2_unicode_compatible)
+    force_str, python_2_unicode_compatible)
 from django.utils.translation import ugettext_lazy as _
 
 from select_multiple_field.models import SelectMultipleField
@@ -49,7 +49,7 @@ class Pizza(models.Model):
     get_toppings.short_description = _('Toppings')
 
     def __str__(self):
-        return "pk=%s" % force_text(self.pk)
+        return "pk=%s" % force_str(self.pk)
 
     def get_absolute_url(self):
         return reverse('pizza:detail', args=[self.pk])
@@ -60,4 +60,4 @@ def show_topping(ingredient):
     Decode topping to full name
     """
     decoder = dict(Pizza.TOPPING_CHOICES)
-    return force_text(decoder[ingredient])
+    return force_str(decoder[ingredient])

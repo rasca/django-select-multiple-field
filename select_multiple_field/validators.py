@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.core import validators
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.translation import ungettext_lazy
 
 try:
@@ -43,4 +43,4 @@ class MaxLengthValidator(validators.BaseValidator):
         return a > b
 
     def clean(self, value):
-        return len(force_text(encode_list_to_csv(value)))
+        return len(force_str(encode_list_to_csv(value)))
